@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import Blocks from '../components/blocks'
 import {getValues, getFocusedIndex} from '../../data/selectors'
 import {addBlock} from '../../data/domains/blocks/actions'
-import {setFocus} from '../../data/domains/focus/actions'
+import selectBlock from '../use-cases/select-block'
 
 function mapStateToProps (state) {
   return {
@@ -15,8 +15,8 @@ function mergeProps (stateProps, actions) {
   return {
     ...stateProps,
     onAddBlock: () => actions.addBlock(),
-    onSelectBlock: (index) => actions.setFocus(index)
+    onSelectBlock: (index) => actions.selectBlock(index)
   }
 }
 
-export default connect(mapStateToProps, {addBlock, setFocus}, mergeProps)(Blocks)
+export default connect(mapStateToProps, {addBlock, selectBlock}, mergeProps)(Blocks)
