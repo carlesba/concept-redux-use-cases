@@ -1,11 +1,22 @@
 import {connect} from 'react-redux'
-import Blocks from '../components/editor'
-import {getValues} from '../../data/selectors'
+import Blocks from '../components/blocks'
+import {getValues, getFocusedIndex} from '../../data/selectors'
+import {addBlock} from '../../data/domains/blocks/actions'
+import {setFocus} from '../../data/domains/focus/actions'
 
 function mapStateToProps (state) {
   return {
-    blocks: getValues(state)
+    blocks: getValues(state),
+    index: getFocusedIndex(state)
   }
 }
 
-export default connect(mapStateToProps)(Blocks)
+function mergeProps (stateProps, actions) {
+  return {
+    ...stateProps,
+    onAddBlock: () => actions.addBlock(),
+    onSelectBlock: (index) => actions.setFocus(index)
+  }
+}
+
+export default connect(mapStateToProps, {addBlock, setFocus}, mergeProps)(Blocks)

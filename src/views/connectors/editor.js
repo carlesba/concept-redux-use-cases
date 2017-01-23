@@ -1,19 +1,19 @@
 import {connect} from 'react-redux'
 import Editor from '../components/editor'
-import {updateBlock} from '../../data/domains/actions'
-import {getCurrentValue, getCurrentBlockIndex} from '../../data/selectors'
+import {updateBlock} from '../../data/domains/blocks/actions'
+import {getCurrentValue, getFocusedIndex} from '../../data/selectors'
 
 function mapStateToProps (state) {
   return {
     value: getCurrentValue(state),
-    index: getCurrentBlockIndex(state)
+    index: getFocusedIndex(state)
   }
 }
 
-function mergeProps (props, actions) {
+function mergeProps (stateProps, actions) {
   return {
-    value: props.value,
-    onChange: (value) => actions.updateBlock(props.index, value)
+    value: stateProps.value,
+    onChange: (value) => actions.updateBlock(stateProps.index, value)
   }
 }
 

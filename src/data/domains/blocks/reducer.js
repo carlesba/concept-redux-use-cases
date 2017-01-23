@@ -2,11 +2,9 @@ import {ADD_BLOCK, UPDATE_BLOCK} from './constants'
 
 const actionMap = {
   [ADD_BLOCK]: (state, action) => {
-    const {index} = action.payload
     return [
-      state.slice(0, index),
-      {type: undefined, value: ''},
-      state.slice(index)
+      ...state,
+      {type: undefined, value: ''}
     ]
   },
   [UPDATE_BLOCK]: (state, action) => {
@@ -17,15 +15,15 @@ const actionMap = {
       value
     }
     return [
-      state.slice(0, index),
+      ...state.slice(0, index),
       newBlock,
-      state.slice(index)
+      ...state.slice(index + 1)
     ]
   }
 }
 
 export default function blockReducer (state = [], action = {}) {
   const reducer = actionMap[action.type]
-  if (reducer) return reducer(action)
+  if (reducer) return reducer(state, action)
   return state
 }

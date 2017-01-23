@@ -1,0 +1,8 @@
+.block {
+  cursor: pointer;
+  padding: 1em 1em 0 2em;
+}
+.block.is-selected {
+  font-weight: bold;
+  cursor: auto;
+}

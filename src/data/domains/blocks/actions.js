@@ -1,9 +1,9 @@
 import {ADD_BLOCK, UPDATE_BLOCK} from './constants'
 
-export const addBlock = (index) => {
+export const addBlock = () => {
   return {
     type: ADD_BLOCK,
-    payload: { index }
+    payload: {}
   }
 }
 
