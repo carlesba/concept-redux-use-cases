@@ -1,3 +1,4 @@
+import createReducer from '../../../lib/create-reducer'
 import {SET_FOCUS} from './constants'
 
 const actionMap = {
@@ -7,8 +8,4 @@ const actionMap = {
   }
 }
 
-export default function focusReducer (state = 0, action = {}) {
-  const reducer = actionMap[action.type]
-  if (reducer) return reducer(state, action)
-  return state
-}
+export default createReducer(0, actionMap)

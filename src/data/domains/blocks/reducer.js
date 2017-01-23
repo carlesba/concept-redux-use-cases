@@ -1,3 +1,4 @@
+import createReducer from '../../../lib/create-reducer'
 import {ADD_BLOCK, UPDATE_BLOCK} from './constants'
 
 const actionMap = {
@@ -22,8 +23,4 @@ const actionMap = {
   }
 }
 
-export default function blockReducer (state = [], action = {}) {
-  const reducer = actionMap[action.type]
-  if (reducer) return reducer(state, action)
-  return state
-}
+export default createReducer([], actionMap)
